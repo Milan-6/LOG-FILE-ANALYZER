@@ -1,0 +1,29 @@
+[
+    {
+        "ERROR": 2,
+        "INFO": 5,
+        "WARNING": 1
+    },
+    {
+        "ERROR": [
+            "Database connection failed",
+            "Invalid login attempt: username=unknown"
+        ],
+        "INFO": [
+            "User login successful: user_id=1042",
+            "Page viewed: dashboard",
+            "Retrying database connection",
+            "Database connection restored",
+            "User logout: user_id=1042"
+        ],
+        "WARNING": [
+            "Slow response: endpoint=/reports duration=2.8s"
+        ],
+        "login_ids": [
+            "1042"
+        ],
+        "usernames": [
+            "unknown"
+        ]
+    }
+]

@@ -1,0 +1,8 @@
+2026-10-21 09:15:02 INFO User login successful: user_id=1042
+2026-10-21 09:16:18 INFO Page viewed: dashboard
+2026-10-21 09:17:44 WARNING Slow response: endpoint=/reports duration=2.8s
+2026-10-21 09:18:01 ERROR Database connection failed
+2026-10-21 09:18:25 INFO Retrying database connection
+2026-10-21 09:18:27 INFO Database connection restored
+2026-10-21 09:20:10 ERROR Invalid login attempt: username=unknown
+2026-10-21 09:21:33 INFO User logout: user_id=1042
