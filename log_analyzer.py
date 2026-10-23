@@ -13,34 +13,55 @@ def generate_log_data(log_content):
 
     activity_counter={}
     activity_data={}
-    common_activiys=["ERROR","INFO","WARNING"]
+    common_activiys=["ERROR","INFO","WARN"]
 
     for activity in common_activiys:
 
-        pattern=rf"\b{re.escape(activity)}\b"
-        matchs=re.findall(pattern,log_content)
+        pattern=r"\bWARN(:?ING)?\b" if activity=="WARN" else rf"\b{activity}\b"
+        match=re.findall(pattern,log_content,re.IGNORECASE)
 
-        activity_counter[activity]=len(matchs)
+        activity_counter[activity]=len(match)
+        activity_data[activity]=match
 
-    for key,value in activity_counter.items():
-        pattern=rf"\b{key}\b\s*(.*)"
-        matchs=re.findall(pattern,log_content,flags=re.IGNORECASE)
-        activity_data[key]=matchs
+    user_ids = re.findall(r"\buser_id[:=]([^\s]+)", log_content)
+    usernames = re.findall(r"\busername[:=]([^\s]+)", log_content)
+    request_ids = re.findall(r"\brequest_id[:=]([^\s]+)", log_content)
 
-    found_ids=[]
-    found_names=[]
-    5
-    for level,entries in activity_data.items():
-        for entry in entries:
-            login_ids=re.findall(r"\blogin\b.*?\buser[_-]id\s*[:=](\d+)\b",entry,flags=re.IGNORECASE)
-            useranames=re.findall(r"\busername\s*[:=]\s*([^\s,;]+)",entry,flags=re.IGNORECASE)
-            found_ids.extend(login_ids)
-            found_names.extend(useranames)
+    activity_data["user-ids"]=list(set(user_ids))
+    activity_data["useranames"]=list(set(usernames))
+    activity_data["request-ids"]=list(set(request_ids))
 
-    activity_data['login_ids']=found_ids
-    activity_data['usernames']=found_names
+    return {
+    "activity_counter": activity_counter,
+    "activity_data": activity_data
+    }
 
-    return[activity_counter,activity_data]
+
+def health_overview(logfile,data):
+    """makes a report of the entire health of the system by analyzing the log"""
+
+    total_request=len(re.findall(r"\brequest_id\b",logfile,flags=re.IGNORECASE))
+    errors=len(re.findall(r"\berror\b",logfile,flags=re.IGNORECASE))
+    Warnings=len(re.findall(r"\bwarning\b",logfile,flags=re.IGNORECASE))
+
+    error_rate=(errors/total_request)*100 if total_request > 0 else 0.0
+
+    if error_rate == 0 and errors == 0:
+        status = "Healthy"
+    elif error_rate < 5.0:
+        status = "Degraded"
+    else:
+        status = "Critical"
+
+    data["health-result"]=[{
+        "total-request":total_request,
+        "erros":errors,
+        "error-rate":round(error_rate,2),
+        "status":status,
+        "warnings":Warnings
+    }]
+    
+    
 
 def save_log_result(data):
     """ saves the log-analyzation result to a cvs file"""
@@ -48,15 +69,13 @@ def save_log_result(data):
     with open("/home/milan/Documents/PythonPJTS/log_file_analyzer/log_analyzed_result.json",'w') as file:
         json.dump(data,file,indent=4)
 
-    with open("/home/milan/Documents/PythonPJTS/log_file_analyzer/log_analyzed_result.json",'r') as file:
-        saved=json.load(file)
-    print(saved)
-
 def main():
 
     raw_log=read_log_file()
     analyzation_result=generate_log_data(raw_log)
     save_log_result(analyzation_result)
+    health_overview(raw_log,analyzation_result)
+
 
 if __name__=="__main__":
     main()

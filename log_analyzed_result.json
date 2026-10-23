@@ -1,29 +1,66 @@
-[
-    {
-        "ERROR": 2,
-        "INFO": 5,
-        "WARNING": 1
+{
+    "activity_counter": {
+        "ERROR": 12,
+        "INFO": 8,
+        "WARN": 8
     },
-    {
+    "activity_data": {
         "ERROR": [
-            "Database connection failed",
-            "Invalid login attempt: username=unknown"
+            "ERROR",
+            "error",
+            "ERROR",
+            "error",
+            "ERROR",
+            "error",
+            "ERROR",
+            "error",
+            "ERROR",
+            "error",
+            "ERROR",
+            "error"
         ],
         "INFO": [
-            "User login successful: user_id=1042",
-            "Page viewed: dashboard",
-            "Retrying database connection",
-            "Database connection restored",
-            "User logout: user_id=1042"
+            "INFO",
+            "INFO",
+            "INFO",
+            "INFO",
+            "INFO",
+            "INFO",
+            "INFO",
+            "INFO"
         ],
-        "WARNING": [
-            "Slow response: endpoint=/reports duration=2.8s"
+        "WARN": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
         ],
-        "login_ids": [
-            "1042"
+        "user-ids": [
+            "4421",
+            "1840",
+            "9812",
+            "7741",
+            "9532",
+            "3317",
+            "2910",
+            "6672",
+            "8821"
         ],
-        "usernames": [
-            "unknown"
+        "useranames": [],
+        "request-ids": [
+            "ab392",
+            "ab411",
+            "ab391",
+            "ab390",
+            "ab102",
+            "ab221",
+            "ab478",
+            "ab812",
+            "ab556"
         ]
     }
-]
+}

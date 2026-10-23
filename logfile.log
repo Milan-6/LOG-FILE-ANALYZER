@@ -1,8 +1,22 @@
-2026-10-21 09:15:02 INFO User login successful: user_id=1042
-2026-10-21 09:16:18 INFO Page viewed: dashboard
-2026-10-21 09:17:44 WARNING Slow response: endpoint=/reports duration=2.8s
-2026-10-21 09:18:01 ERROR Database connection failed
-2026-10-21 09:18:25 INFO Retrying database connection
-2026-10-21 09:18:27 INFO Database connection restored
-2026-10-21 09:20:10 ERROR Invalid login attempt: username=unknown
-2026-10-21 09:21:33 INFO User logout: user_id=1042
+2026-10-23T10:04:51+05:30 INFO  auth-api request_id=ab102 user_id=9812 event=login_attempt ip=203.0.113.14 status=200 duration_ms=182
+2026-10-23T10:05:03+05:30 INFO  reporting-worker job_id=report-771 event=report_started report=daily_account_activity
+2026-10-23T10:06:18+05:30 WARN  postgres database=appdb event=slow_query duration_ms=6120 query=session_lookup active_connections=61 max_connections=100
+2026-10-23T10:07:44+05:30 WARN  postgres database=appdb event=slow_query duration_ms=7188 query=session_lookup active_connections=74 max_connections=100
+2026-10-23T10:08:29+05:30 WARN  postgres database=appdb event=slow_query duration_ms=8341 query=session_lookup active_connections=82 max_connections=100
+2026-10-23T10:10:12+05:30 WARN  auth-api request_id=ab221 user_id=8821 event=login_attempt status=200 duration_ms=2840 message="Database response delayed"
+2026-10-23T10:12:06+05:30 WARN  postgres database=appdb event=connection_usage active_connections=91 max_connections=100
+2026-10-23T10:13:35+05:30 WARN  postgres database=appdb event=connection_usage active_connections=97 max_connections=100
+2026-10-23T10:14:02+05:30 ERROR auth-api request_id=ab390 user_id=4421 event=login_attempt status=503 error="connection pool exhausted"
+2026-10-23T10:14:07+05:30 ERROR auth-api request_id=ab391 user_id=7741 event=login_attempt status=503 error="connection pool exhausted"
+2026-10-23T10:14:14+05:30 ERROR auth-api request_id=ab392 user_id=1840 event=login_attempt status=503 error="connection pool exhausted"
+2026-10-23T10:15:20+05:30 ERROR auth-api request_id=ab411 user_id=9532 event=login_attempt status=503 error="connection pool exhausted"
+2026-10-23T10:16:43+05:30 ERROR auth-api request_id=ab478 user_id=2910 event=login_attempt status=503 error="connection pool exhausted"
+2026-10-23T10:18:11+05:30 ERROR auth-api request_id=ab556 user_id=3317 event=login_attempt status=503 error="connection pool exhausted"
+2026-10-23T10:20:32+05:30 WARN  monitoring service=auth-api metric=login_failure_rate value=18.2 threshold=5.0 unit=percent
+2026-10-23T10:23:09+05:30 WARN  postgres database=appdb event=connection_usage active_connections=100 max_connections=100
+2026-10-23T10:25:18+05:30 INFO  oncall user=devops-1 event=incident_acknowledged incident=INC-204
+2026-10-23T10:27:42+05:30 INFO  reporting-worker job_id=report-771 event=job_cancelled reason="database pressure"
+2026-10-23T10:29:55+05:30 INFO  postgres database=appdb event=connection_usage active_connections=78 max_connections=100
+2026-10-23T10:31:18+05:30 INFO  auth-api request_id=ab812 user_id=6672 event=login_attempt status=200 duration_ms=391
+2026-10-23T10:32:04+05:30 INFO  monitoring service=auth-api metric=login_failure_rate value=0.4 threshold=5.0 unit=percent
+2026-10-23T10:35:00+05:30 INFO  oncall user=devops-1 event=incident_resolved incident=INC-204
