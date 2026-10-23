@@ -60,7 +60,7 @@ def health_overview(logfile,data):
         "status":status,
         "warnings":Warnings
     }]
-    
+    return data
     
 
 def save_log_result(data):
@@ -69,12 +69,23 @@ def save_log_result(data):
     with open("/home/milan/Documents/PythonPJTS/log_file_analyzer/log_analyzed_result.json",'w') as file:
         json.dump(data,file,indent=4)
 
+def summary(data, logfile):
+    data["summary"] = {
+        "number of warnings": data["health-result"][0]["warnings"],
+        "evidence": re.findall(
+            r"^.*\bWARNING\b.*$",
+            logfile,
+            re.IGNORECASE | re.MULTILINE
+        )
+    }
+    return data
 def main():
 
     raw_log=read_log_file()
     analyzation_result=generate_log_data(raw_log)
-    save_log_result(analyzation_result)
-    health_overview(raw_log,analyzation_result)
+    final_data=health_overview(raw_log,analyzation_result)
+    final=summary(final_data,raw_log)
+    save_log_result(final)
 
 
 if __name__=="__main__":

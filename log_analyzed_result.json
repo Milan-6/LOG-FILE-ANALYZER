@@ -40,27 +40,40 @@
             ""
         ],
         "user-ids": [
-            "4421",
             "1840",
+            "3317",
+            "6672",
             "9812",
             "7741",
-            "9532",
-            "3317",
             "2910",
-            "6672",
+            "9532",
+            "4421",
             "8821"
         ],
         "useranames": [],
         "request-ids": [
-            "ab392",
-            "ab411",
-            "ab391",
+            "ab556",
             "ab390",
             "ab102",
+            "ab411",
+            "ab812",
+            "ab392",
             "ab221",
             "ab478",
-            "ab812",
-            "ab556"
+            "ab391"
         ]
+    },
+    "health-result": [
+        {
+            "total-request": 9,
+            "erros": 12,
+            "error-rate": 133.33,
+            "status": "Critical",
+            "warnings": 0
+        }
+    ],
+    "summary": {
+        "number of warnings": 0,
+        "evidence": []
     }
 }
